@@ -1,0 +1,13 @@
+<?php
+
+namespace DummyNamespace;
+
+use Foris\Easy\Sdk\Component;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends Component
+{
+
+}

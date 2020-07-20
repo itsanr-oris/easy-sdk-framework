@@ -1,0 +1,67 @@
+[
+  {
+    "name": "f-oris/sdk-component",
+    "version": "dev-develop",
+    "version_normalized": "dev-develop",
+    "dist": {
+      "type": "tar",
+      "url": "",
+      "shasum": ""
+    },
+    "require": {
+      "php": ">=7.1"
+    },
+    "type": "library",
+    "extra": {
+      "easy-sdk": {
+        "providers": [
+          "Foris\\Demo\\Sdk\\Vendor\\Component\\ServiceProvider"
+        ]
+      }
+    },
+    "installation-source": "dist",
+    "autoload": {
+      "psr-4": {
+        "Foris\\Demo\\Sdk\\Component\\": "src/"
+      }
+    },
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "F.oris",
+        "email": "oris@itsanr.com"
+      }
+    ]
+  },
+  {
+    "name": "f-oris/other-package",
+    "version": "dev-develop",
+    "version_normalized": "dev-develop",
+    "dist": {
+      "type": "tar",
+      "url": "",
+      "shasum": ""
+    },
+    "require": {
+      "php": ">=7.1"
+    },
+    "type": "library",
+    "installation-source": "dist",
+    "autoload": {
+      "psr-4": {
+        "Foris\\Demo\\OtherPackage": "src/"
+      }
+    },
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "F.oris",
+        "email": "oris@itsanr.com"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/demo/vendor/autoload.php';
+
+$app = new \Foris\Demo\Sdk\Application();
+$artisan = new \Foris\Demo\Sdk\Console\Application($app);
+
+$artisan->run();

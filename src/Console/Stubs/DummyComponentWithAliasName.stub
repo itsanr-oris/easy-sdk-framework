@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyNamespace;
+
+use Foris\Easy\Sdk\Component;
+
+/**
+ * Class DummyAliasComponent
+ */
+class DummyClass extends Component
+{
+    /**
+     * Get component name
+     *
+     * @return     string  component name
+     */
+    public static function name()
+    {
+        return 'DummyAliasName';
+    }
+}

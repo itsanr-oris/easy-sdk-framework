@@ -1,0 +1,17 @@
+{
+  "name": "f-oris/easy-sdk-demo",
+  "description": "",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "F.oris",
+      "email": "us@foris.me"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Foris\\Demo\\Sdk\\": "src/"
+    }
+  }
+}
