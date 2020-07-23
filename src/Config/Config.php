@@ -204,9 +204,15 @@ class Config extends Component implements \ArrayAccess
         $paths = Arr::wrap($paths);
 
         foreach ($paths as $path) {
+            $name = $this->getItemName($path);
+
+            if (empty($name)) {
+                continue;
+            }
+
             $config = $this->getItemConfig($path);
             if (is_array($config)) {
-                $this->set($this->getItemName($path), $config);
+                $this->set($name, $config);
             }
         }
     }
