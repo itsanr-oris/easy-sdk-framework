@@ -59,6 +59,17 @@ class ServiceContainer extends Container
     }
 
     /**
+     * Checks if a parameter or an object is set.
+     *
+     * @param $id
+     * @return bool
+     */
+    public function has($id)
+    {
+        return $this->offsetExists($id);
+    }
+
+    /**
      * Gets the service instance.
      *
      * @param $id

@@ -25,7 +25,7 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="tests_build"/>
-        <log type="testdox-text" target="tests_build/test-dox.txt"/>
+        <log type="coverage-html" target="tests_report"/>
+        <log type="testdox-text" target="tests_report/test-dox.txt"/>
     </logging>
 </phpunit>

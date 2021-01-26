@@ -60,8 +60,7 @@ class ServiceProvider
      */
     protected function mergeConfigFrom($path, $key)
     {
-        $config = $this->app()->get('config')->get($key, []);
-        $this->app()->get('config')->set($key, array_merge(require $path, $config));
+        $this->app()->config()->mergeConfig(require $path, $key);
     }
 
     /**

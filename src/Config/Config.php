@@ -216,4 +216,23 @@ class Config extends Component implements \ArrayAccess
             }
         }
     }
+
+    /**
+     * Merge configuration.
+     *
+     * @param array  $config
+     * @param string $keyPrefix
+     */
+    public function mergeConfig(array $config, $keyPrefix = '')
+    {
+        foreach ($config as $key => $value) {
+
+            if (is_array($value)) {
+                $this->mergeConfig($value, empty($keyPrefix) ? $key : $keyPrefix . '.' . $key);
+                continue;
+            }
+
+            $this->set($keyPrefix . '.' . $key, $value);
+        }
+    }
 }

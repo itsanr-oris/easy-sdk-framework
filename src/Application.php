@@ -4,11 +4,13 @@ namespace Foris\Easy\Sdk;
 
 use Foris\Easy\Sdk\Component\ComponentManifest;
 use Foris\Easy\Sdk\Component\ServiceProvider as ComponentServiceProvider;
+use Foris\Easy\Sdk\Config\Config;
 use Foris\Easy\Sdk\Config\ServiceProvider as ConfigServiceProvider;
 use Foris\Easy\Sdk\Console\ServiceProvider as ConsoleServiceProvider;
 use Foris\Easy\Sdk\Console\Application as Artisan;
 use Foris\Easy\Sdk\Package\PackageManifest;
 use Foris\Easy\Sdk\Package\ServiceProvider as PackageManifestServiceProvider;
+use Foris\Easy\Support\Arr;
 use Foris\Easy\Support\Str;
 use ReflectionClass;
 
@@ -22,7 +24,7 @@ class Application extends ServiceContainer
      *
      * @var string
      */
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1';
 
     /**
      * The root path for the sdk application.
@@ -55,12 +57,13 @@ class Application extends ServiceContainer
     /**
      * Application constructor.
      *
-     * @param null $rootPath
+     * @param string|array|null $config
      */
-    public function __construct($rootPath = null)
+    public function __construct($config = null)
     {
         parent::__construct([]);
-        $this->setRootPath($rootPath);
+        $rootPath = is_string($config) ? $config : null;
+        $this->setRootPath($rootPath)->mergeConfig(Arr::wrap($config));
     }
 
     /**
@@ -72,6 +75,28 @@ class Application extends ServiceContainer
 
         $this->registerProviders($this->get(PackageManifest::name())->providers());
         $this->components($this->get(ComponentManifest::name())->components());
+    }
+
+    /**
+     * Gets the sdk configuration manager instance.
+     *
+     * @return Config
+     */
+    public function config()
+    {
+        return $this->get('config');
+    }
+
+    /**
+     * Merge sdk configuration.
+     *
+     * @param array $config
+     * @return Application
+     */
+    public function mergeConfig($config = [])
+    {
+        $this->config()->mergeConfig($config);
+        return $this;
     }
 
     /**
