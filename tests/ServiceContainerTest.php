@@ -93,4 +93,16 @@ class ServiceContainerTest extends TestCase
         $this->assertEquals('test service', $instance->get('testService'));
         $this->assertEquals($instance->get('helloService'), $instance->helloService);
     }
+
+    /**
+     * Test checks if a parameter or an object is set.
+     *
+     * @param ServiceContainer $instance
+     * @depends testBindSingletonService
+     */
+    public function testHasService(ServiceContainer $instance)
+    {
+        $this->assertFalse($instance->has('no_exist_service'));
+        $this->assertTrue($instance->has('helloService'));
+    }
 }

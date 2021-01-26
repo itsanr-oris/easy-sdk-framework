@@ -91,7 +91,7 @@ class ServiceProviderTest extends TestCase
         $provider = $this->provider();
         $provider->register();
 
-        $expected = array_merge(require __DIR__ . '/Services/config/config.php', $config);
+        $expected = array_merge($config, require __DIR__ . '/Services/config/config.php');
         $this->assertEquals($expected, $this->app()->get('config')->get('test-config', []));
     }
 }

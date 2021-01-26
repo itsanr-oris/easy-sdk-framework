@@ -109,4 +109,27 @@ class ConfigTest extends TestCase
         unset($config['not-exists-item']);
         $this->assertFalse(isset($config['not-exists-item']));
     }
+
+    /**
+     * Test override configuration
+     *
+     * @throws \ReflectionException
+     */
+    public function testOverrideConfiguration()
+    {
+        $instance = $this->instance();
+        $instance->setConfigPath(__DIR__ . '/config');
+
+        $all = [
+            'test-a' => ['key-a' => 'value-a-override', 'key-b' => 'value-b'],
+
+            'test-b' => ['key-b' => 'value-b'],
+        ];
+
+        $instance->mergeConfig([
+            'test-a' => ['key-a' => 'value-a-override', 'key-b' => 'value-b']
+        ]);
+
+        $this->assertEquals($all, $instance->all());
+    }
 }
