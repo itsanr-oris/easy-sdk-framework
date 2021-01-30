@@ -23,7 +23,7 @@ class ComponentManifestTest extends TestCase
      *
      * @throws \ReflectionException
      */
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
         $this->manifestPath = $this->app()->getRootPath() . '/bootstrap/cache/components.php';
@@ -87,8 +87,9 @@ class ComponentManifestTest extends TestCase
         }
         @rmdir(dirname($this->manifestPath));
 
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('The '.dirname($this->manifestPath).' directory must be present and writable.');
+        $class = \Exception::class;
+        $message = 'The '.dirname($this->manifestPath).' directory must be present and writable.';
+        $this->assertThrowException($class, $message);
 
         $this->instance()->build();
     }

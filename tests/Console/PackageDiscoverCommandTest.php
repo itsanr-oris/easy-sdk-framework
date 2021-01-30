@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpMethodParametersCountMismatchInspection */
 
 namespace Foris\Easy\Sdk\Tests\Console;
 
@@ -18,7 +18,7 @@ class PackageDiscoverCommandTest extends TestCase
     public function testPackageDiscoverCommand()
     {
         $mock = \Mockery::mock(PackageManifest::class);
-        $mock->shouldReceive('build')->andReturnTrue();
+        $mock->shouldReceive('build')->andReturn(true);
 
         $manifest = [
             'sdk-component-a' => [],
@@ -32,7 +32,7 @@ class PackageDiscoverCommandTest extends TestCase
 
         $this->call('package:discover');
 
-        $this->assertStringContainsString('Discovered Package: sdk-component-a', $this->getDisplay());
-        $this->assertStringContainsString('Discovered Package: sdk-component-b', $this->getDisplay());
+        $this->assertHasSubString('Discovered Package: sdk-component-a', $this->getDisplay());
+        $this->assertHasSubString('Discovered Package: sdk-component-b', $this->getDisplay());
     }
 }

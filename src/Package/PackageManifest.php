@@ -109,7 +109,8 @@ class PackageManifest extends Component
                 continue;
             }
 
-            $this->manifest[$this->format($package['name'])] = $package['extra']['easy-sdk'] ?? [];
+            $extraInfo = isset($package['extra']['easy-sdk']) ? $package['extra']['easy-sdk'] : [];
+            $this->manifest[$this->format($package['name'])] = $extraInfo;
         }
 
         $this->write($this->manifest);

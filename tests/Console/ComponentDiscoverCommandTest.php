@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpMethodParametersCountMismatchInspection */
 
 namespace Foris\Easy\Sdk\Tests\Console;
 
@@ -18,7 +18,7 @@ class ComponentDiscoverCommandTest extends TestCase
     public function testComponentDiscoverCommand()
     {
         $mock = \Mockery::mock(ComponentManifest::class);
-        $mock->shouldReceive('build')->andReturnTrue();
+        $mock->shouldReceive('build')->andReturn(true);
 
         $manifest = [
             'sdk-component-a',
@@ -32,7 +32,7 @@ class ComponentDiscoverCommandTest extends TestCase
 
         $this->call('component:discover');
 
-        $this->assertStringContainsString('Discovered Component: sdk-component-a', $this->getDisplay());
-        $this->assertStringContainsString('Discovered Component: sdk-component-b', $this->getDisplay());
+        $this->assertHasSubString('Discovered Component: sdk-component-a', $this->getDisplay());
+        $this->assertHasSubString('Discovered Component: sdk-component-b', $this->getDisplay());
     }
 }

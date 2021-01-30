@@ -38,7 +38,7 @@ class DummyClass extends GenerateCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function getStub()
     {
         // TODO: Implement getStub() method.
     }

@@ -35,7 +35,7 @@ class MakeComponentCommandTest extends TestCase
             $namespace = $namespace . '\\' . implode('\\', $namespaceSegments);
         }
 
-        $alias = $options['alias'] ?? '';
+        $alias = isset($options['alias']) ? $options['alias'] : '';
         $file = !empty($alias) ? 'DummyComponentWithAliasName.stub' : 'DummyComponent.stub';
         $stub = Filesystem::get( __DIR__ . '/../../src/Console/Stubs/' . $file);
 

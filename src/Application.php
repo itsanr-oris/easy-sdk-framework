@@ -232,9 +232,10 @@ class Application extends ServiceContainer
      * @param string $provider
      * @param array  $publishes
      */
-    public function publishes(string $provider, $publishes = [])
+    public function publishes($provider, $publishes = [])
     {
-        $this->publishes[$provider] = array_merge($this->publishes[$provider] ?? [], $publishes);
+        $origin = isset($this->publishes[$provider]) ? $this->publishes[$provider] : [];
+        $this->publishes[$provider] = array_merge($origin, $publishes);
     }
 
     /**
@@ -245,7 +246,8 @@ class Application extends ServiceContainer
      */
     public function getPublishes($provider = null)
     {
-        return $provider === null ? $this->publishes : $this->publishes[$provider] ?? [];
+        $publishes = isset($this->publishes[$provider]) ? $this->publishes[$provider] : [];
+        return $provider === null ? $this->publishes : $publishes;
     }
 
     /**

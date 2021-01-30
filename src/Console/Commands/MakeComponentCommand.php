@@ -46,7 +46,7 @@ class MakeComponentCommand extends GenerateCommand
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub()
     {
         if ($this->option('alias')) {
             return __DIR__ . '/../Stubs/DummyComponentWithAliasName.stub';

@@ -3,7 +3,6 @@
 namespace Foris\Easy\Sdk\Console;
 
 use Foris\Easy\Sdk\Console\Commands\ComponentDiscoverCommand;
-use Foris\Easy\Sdk\Console\Commands\InitProjectCommand;
 use Foris\Easy\Sdk\Console\Commands\MakeCommand;
 use Foris\Easy\Sdk\Console\Commands\MakeComponentCommand;
 use Foris\Easy\Sdk\Console\Commands\PackageDiscoverCommand;

@@ -67,7 +67,7 @@ class VendorPublishCommand extends Command
      * @param string $provider
      * @throws \ReflectionException
      */
-    public function publish(string $provider)
+    public function publish($provider)
     {
         foreach ($this->app()->getPublishes($provider) as $from => $to) {
             $this->publishItem($from, $to);
