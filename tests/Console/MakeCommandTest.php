@@ -35,7 +35,7 @@ class MakeCommandTest extends TestCase
             $namespace = $namespace . '\\' . implode('\\', $namespaceSegments);
         }
 
-        $type = $options['type'] ?? '';
+        $type = isset($options['type']) ? $options['type'] : '';
         $file = $type == 'generate-command' ? 'DummyGenerateCommand.stub' : 'DummyCommand.stub';
         $stub = Filesystem::get( __DIR__ . '/../../src/Console/Stubs/' . $file);
 

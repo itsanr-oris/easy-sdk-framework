@@ -20,7 +20,7 @@ class ServiceProviderTest extends TestCase
     /**
      * Set up test environment
      */
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
         $this->app()->get('config')->set('test-config', ['key-a' => 'test-value']);

@@ -23,7 +23,7 @@ class MakeCommand extends \Foris\Easy\Console\Commands\MakeCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function getStub()
     {
         if ($this->option('type') == 'generate-command') {
             return __DIR__ . '/../Stubs/DummyGenerateCommand.stub';

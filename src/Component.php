@@ -32,7 +32,7 @@ class Component
      *
      * @return Application
      */
-    public function app() : Application
+    public function app()
     {
         return $this->app;
     }

@@ -77,6 +77,6 @@ class VendorPublishCommandTest extends TestCase
         ]);
 
         $this->call('vendor:publish', ['--provider' => 'NotExistServiceProvider']);
-        $this->assertStringContainsString("Can't locate path: <not-exist-assets>", $this->getDisplay());
+        $this->assertHasSubString("Can't locate path: <not-exist-assets>", $this->getDisplay());
     }
 }
