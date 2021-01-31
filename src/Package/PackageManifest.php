@@ -102,6 +102,9 @@ class PackageManifest extends Component
 
         if (file_exists($path = $this->vendorPath.'/composer/installed.json')) {
             $packages = json_decode(file_get_contents($path), true);
+
+            // composer 2.0
+            $packages = isset($packages['packages']) ? $packages['packages'] : $packages;
         }
 
         foreach ($packages as $package) {
