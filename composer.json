@@ -13,13 +13,13 @@
         "php": ">=5.5",
         "ext-json": "*",
         "pimple/pimple": "^1.0|^2.0|^3.2",
-        "f-oris/easy-console": "^0.5"
+        "f-oris/easy-console": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.0|^5.0|^6.0|^7.0|^8.0",
-        "mockery/mockery": "^0.9|^1.0",
+        "phpunit/phpunit": "^4.0",
+        "mockery/mockery": "^0.9",
         "mikey179/vfsstream": "^1.6",
-        "symfony/var-dumper": "^3.0|^4.1.1"
+        "symfony/var-dumper": "^3.0"
     },
     "suggest": {
         "f-oris/easy-sdk-logger": "A simple sdk logger extension.",

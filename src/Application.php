@@ -24,7 +24,7 @@ class Application extends ServiceContainer
      *
      * @var string
      */
-    const VERSION = '2.0.1';
+    const VERSION = '2.0.0';
 
     /**
      * The root path for the sdk application.

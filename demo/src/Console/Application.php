@@ -9,8 +9,6 @@ class Application extends \Foris\Easy\Sdk\Console\Application
 {
     /**
      * Register the commands for the application.
-     *
-     * @throws \ReflectionException
      */
     protected function commands()
     {
