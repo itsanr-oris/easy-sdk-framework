@@ -89,7 +89,7 @@ class PackageManifestTest extends TestCase
 
         $class = \Exception::class;
         $message = 'The '.dirname($this->manifestPath).' directory must be present and writable.';
-        $this->assertThrowException($class, $message);
+        $this->setExpectedException($class, $message);
 
         $this->instance()->build();
     }

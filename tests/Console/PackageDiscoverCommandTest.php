@@ -30,7 +30,7 @@ class PackageDiscoverCommandTest extends TestCase
             return $mock;
         });
 
-        $this->call('package:discover');
+        $this->command('package:discover');
 
         $this->assertHasSubString('Discovered Package: sdk-component-a', $this->getDisplay());
         $this->assertHasSubString('Discovered Package: sdk-component-b', $this->getDisplay());

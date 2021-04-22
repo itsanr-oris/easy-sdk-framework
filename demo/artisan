@@ -4,4 +4,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/vendor/autoload.php';
 
-(new \Foris\Demo\Sdk\Application())->artisan()->run();
+$app = new \Foris\Demo\Sdk\Application();
+$artisan = new \Foris\Demo\Sdk\Console\Application($app);
+
+$artisan->run();

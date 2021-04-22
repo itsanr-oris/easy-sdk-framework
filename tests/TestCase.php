@@ -7,16 +7,10 @@ use org\bovigo\vfs\vfsStream;
 
 /**
  * Class TestCase
- *
- * @method expectException($class)
- * @method expectExceptionMessage($message)
- * @method setExpectedException($class, $message = "", $code = null)
- * @method assertStringContainsString(string $needle, string $haystack, string $message = '')
- * @method assertStringContainsStringIgnoringCase(string $needle, string $haystack, string $message = '')
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use CommandTrait;
+    use ArtisanTestSuite;
 
     /**
      * Application instance.
@@ -77,38 +71,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         return $this->vfs;
-    }
-
-    /**
-     * Run an Artisan console command by name.
-     *
-     * @param       $command
-     * @param array $parameters
-     * @return int
-     *
-     * @throws \Exception
-     */
-    public function call($command, $parameters = [])
-    {
-        return $this->app()->artisan()->call($command, $parameters, $this->initOutput());
-    }
-
-    /**
-     * Assert a exception was thrown.
-     *
-     * @param        $class
-     * @param string $message
-     */
-    protected function assertThrowException($class, $message = '')
-    {
-        if (method_exists($this, 'setExpectedException')) {
-            $this->setExpectedException($class, $message);
-            return ;
-        } else {
-            $this->expectException($class);
-            $this->expectExceptionMessage($message);
-            return ;
-        }
     }
 
     /**

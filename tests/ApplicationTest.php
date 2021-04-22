@@ -86,14 +86,6 @@ class ApplicationTest extends TestCase
     }
 
     /**
-     * Test gets the artisan application instance.
-     */
-    public function testGetsArtisanApplication()
-    {
-        $this->assertInstanceOf(Application::class, $this->app()->artisan());
-    }
-
-    /**
      * Test publishes
      */
     public function testPublishes()

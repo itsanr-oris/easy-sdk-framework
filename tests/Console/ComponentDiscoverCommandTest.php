@@ -30,7 +30,7 @@ class ComponentDiscoverCommandTest extends TestCase
             return $mock;
         });
 
-        $this->call('component:discover');
+        $this->command('component:discover');
 
         $this->assertHasSubString('Discovered Component: sdk-component-a', $this->getDisplay());
         $this->assertHasSubString('Discovered Component: sdk-component-b', $this->getDisplay());

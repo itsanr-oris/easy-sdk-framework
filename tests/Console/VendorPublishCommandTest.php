@@ -26,7 +26,7 @@ class VendorPublishCommandTest extends TestCase
         $this->assertFileNotExists($des);
 
         $this->app()->publishes('ServiceProvider', [$src => $des]);
-        $this->call('vendor:publish', ['--provider' => 'ServiceProvider']);
+        $this->command('vendor:publish', ['--provider' => 'ServiceProvider']);
 
         $this->assertFileExists($des);
         $this->assertFileEquals($src, $des);
@@ -34,7 +34,7 @@ class VendorPublishCommandTest extends TestCase
         file_put_contents($des, 'new content');
         $this->assertFileNotEquals($src, $des);
 
-        $this->call('vendor:publish', ['--provider' => 'ServiceProvider', '--force' => true]);
+        $this->command('vendor:publish', ['--provider' => 'ServiceProvider', '--force' => true]);
         $this->assertFileEquals($src, $des);
     }
 
@@ -55,7 +55,7 @@ class VendorPublishCommandTest extends TestCase
         $this->assertFileNotExists($des);
 
         $this->app()->publishes('ServiceProvider', [$src => $des]);
-        $this->call('vendor:publish', ['--provider' => 'ServiceProvider']);
+        $this->command('vendor:publish', ['--provider' => 'ServiceProvider']);
 
         $this->assertFileExists($des);
 
@@ -76,7 +76,7 @@ class VendorPublishCommandTest extends TestCase
             'not-exist-assets' => $this->app()->getConfigPath('not-exist-assets'),
         ]);
 
-        $this->call('vendor:publish', ['--provider' => 'NotExistServiceProvider']);
+        $this->command('vendor:publish', ['--provider' => 'NotExistServiceProvider']);
         $this->assertHasSubString("Can't locate path: <not-exist-assets>", $this->getDisplay());
     }
 }
