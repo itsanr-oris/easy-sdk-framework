@@ -21,6 +21,7 @@
                 <directory suffix="ServiceProvider.php">src/Config/</directory>
                 <directory suffix="ServiceProvider.php">src/Console/</directory>
                 <directory suffix="ServiceProvider.php">src/Package/</directory>
+                <directory suffix=".php">src/Test/</directory>
             </exclude>
         </whitelist>
     </filter>

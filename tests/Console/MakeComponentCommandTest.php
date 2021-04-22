@@ -56,12 +56,12 @@ class MakeComponentCommandTest extends TestCase
         $path = $this->app()->getRootPath() . '/src/Component/Demo.php';
         $this->assertFileNotExists($path);
 
-        $this->call('make:component', ['name' => 'Component/Demo']);
+        $this->command('make:component', ['name' => 'Component/Demo']);
 
         $this->assertFileExists($path);
         $this->assertEquals($this->getExpectedFileContent('Component/Demo'), Filesystem::get($path));
 
-        $this->call('make:component', ['name' => 'Component/Demo', '--alias' => 'demo', '--force' => true]);
+        $this->command('make:component', ['name' => 'Component/Demo', '--alias' => 'demo', '--force' => true]);
         $this->assertFileExists($path);
         $this->assertEquals($this->getExpectedFileContent('Component/Demo', ['alias' => 'demo']), Filesystem::get($path));
     }

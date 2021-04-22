@@ -25,13 +25,7 @@ class Application extends \Foris\Easy\Console\Application
     public function __construct(SdkApplication $app)
     {
         $this->app = $app;
-
-        parent::__construct([
-            'name' => 'Easy sdk framework',
-            'version' => SdkApplication::VERSION,
-            'root_path' => $this->app->getRootPath(),
-            'root_namespace' => $this->app->getRootNamespace(),
-        ]);
+        parent::__construct($app->getRootPath(), 'Easy sdk console', SdkApplication::VERSION);
     }
 
     /**

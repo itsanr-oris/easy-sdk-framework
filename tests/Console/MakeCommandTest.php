@@ -55,7 +55,7 @@ class MakeCommandTest extends TestCase
         $command = $this->app()->getRootPath() . '/src/Console/Commands/CustomCommand.php';
 
         $this->assertFileNotExists($command);
-        $this->call('make:command', ['name' => 'CustomCommand']);
+        $this->command('make:command', ['name' => 'CustomCommand']);
         $this->assertFileExists($command);
         $this->assertEquals($this->getExpectedFileContent('CustomCommand'), Filesystem::get($command));
     }
@@ -71,7 +71,7 @@ class MakeCommandTest extends TestCase
         $command = $this->app()->getRootPath() . '/src/Console/Commands/CustomGenerateCommand.php';
 
         $this->assertFileNotExists($command);
-        $this->call('make:command', ['name' => 'CustomGenerateCommand', '--type' => 'generate-command']);
+        $this->command('make:command', ['name' => 'CustomGenerateCommand', '--type' => 'generate-command']);
         $this->assertFileExists($command);
         $this->assertEquals($this->getExpectedFileContent('CustomGenerateCommand', ['type' => 'generate-command']), Filesystem::get($command));
     }

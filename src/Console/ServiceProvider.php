@@ -18,10 +18,6 @@ class ServiceProvider extends \Foris\Easy\Sdk\ServiceProvider
      */
     public function register()
     {
-        $this->app()->singleton('artisan', function () {
-            return new Application($this->app());
-        });
-
         $this->app()->singleton('command.make', function () {
             return new MakeCommand();
         });

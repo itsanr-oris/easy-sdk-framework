@@ -7,7 +7,6 @@ use Foris\Easy\Sdk\Component\ServiceProvider as ComponentServiceProvider;
 use Foris\Easy\Sdk\Config\Config;
 use Foris\Easy\Sdk\Config\ServiceProvider as ConfigServiceProvider;
 use Foris\Easy\Sdk\Console\ServiceProvider as ConsoleServiceProvider;
-use Foris\Easy\Sdk\Console\Application as Artisan;
 use Foris\Easy\Sdk\Package\PackageManifest;
 use Foris\Easy\Sdk\Package\ServiceProvider as PackageManifestServiceProvider;
 use Foris\Easy\Support\Arr;
@@ -24,7 +23,7 @@ class Application extends ServiceContainer
      *
      * @var string
      */
-    const VERSION = '2.0.1';
+    const VERSION = '2.0.0';
 
     /**
      * The root path for the sdk application.
@@ -194,16 +193,6 @@ class Application extends ServiceContainer
 
         $class = static::class;
         return $this->namespace = substr($class, 0, strrpos($class, '\\'));
-    }
-
-    /**
-     * Get artisan application instance.
-     *
-     * @return Artisan
-     */
-    public function artisan()
-    {
-        return $this->get('artisan');
     }
 
     /**
