@@ -81,6 +81,7 @@ class Application extends \Foris\Easy\Console\Application
      * @param OutputInterface|null $output
      * @return int
      * @codeCoverageIgnore
+     * @throws \Exception
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
@@ -115,13 +116,23 @@ class Application extends \Foris\Easy\Console\Application
     /**
      * Handle a caught exception.
      *
-     * @param $exception
-     * @param $output
+     * @param \Exception      $exception
+     * @param OutputInterface $output
+     * @throws \Exception
+     * @codeCoverageIgnore
      */
     public function handleException($exception, $output)
     {
-        method_exists($this, 'renderException')
-            ? $this->renderException($exception, $output)
-            : $this->renderThrowable($exception, $output);
+        if (method_exists($this, 'renderException')) {
+            $this->renderException($exception, $output);
+            return ;
+        }
+
+        if (method_exists($this, 'renderThrowable')) {
+            $this->renderThrowable($exception, $output);
+            return ;
+        }
+
+        throw $exception;
     }
 }
