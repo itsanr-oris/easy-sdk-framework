@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 /**
  * Class Application
@@ -82,6 +81,7 @@ class Application extends \Foris\Easy\Console\Application
      * @param OutputInterface|null $output
      * @return int
      * @codeCoverageIgnore
+     * @throws \Exception
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
@@ -92,12 +92,11 @@ class Application extends \Foris\Easy\Console\Application
             return parent::run($input, $output);
         } catch (\Exception $exception) {
             $this->reportException($exception);
-            $this->renderException($exception, $output);
+            $this->handleException($exception, $output);
             return 1;
         } catch (\Throwable $exception) {
-            $exception = new FatalThrowableError($exception);
             $this->reportException($exception);
-            $this->renderException($exception, $output);
+            $this->handleException($exception, $output);
             return 1;
         }
     }
@@ -112,5 +111,28 @@ class Application extends \Foris\Easy\Console\Application
         if ($this->app()->has(LoggerInterface::class)) {
             $this->app()->get(LoggerInterface::class)->error($exception->getMessage(), ['exception' => $exception]);
         }
+    }
+
+    /**
+     * Handle a caught exception.
+     *
+     * @param \Exception      $exception
+     * @param OutputInterface $output
+     * @throws \Exception
+     * @codeCoverageIgnore
+     */
+    public function handleException($exception, $output)
+    {
+        if (method_exists($this, 'renderException')) {
+            $this->renderException($exception, $output);
+            return ;
+        }
+
+        if (method_exists($this, 'renderThrowable')) {
+            $this->renderThrowable($exception, $output);
+            return ;
+        }
+
+        throw $exception;
     }
 }
