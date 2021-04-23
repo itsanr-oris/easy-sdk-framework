@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 /**
  * Class Application
@@ -92,12 +91,11 @@ class Application extends \Foris\Easy\Console\Application
             return parent::run($input, $output);
         } catch (\Exception $exception) {
             $this->reportException($exception);
-            $this->renderException($exception, $output);
+            $this->handleException($exception, $output);
             return 1;
         } catch (\Throwable $exception) {
-            $exception = new FatalThrowableError($exception);
             $this->reportException($exception);
-            $this->renderException($exception, $output);
+            $this->handleException($exception, $output);
             return 1;
         }
     }
@@ -112,5 +110,18 @@ class Application extends \Foris\Easy\Console\Application
         if ($this->app()->has(LoggerInterface::class)) {
             $this->app()->get(LoggerInterface::class)->error($exception->getMessage(), ['exception' => $exception]);
         }
+    }
+
+    /**
+     * Handle a caught exception.
+     *
+     * @param $exception
+     * @param $output
+     */
+    public function handleException($exception, $output)
+    {
+        method_exists($this, 'renderException')
+            ? $this->renderException($exception, $output)
+            : $this->renderThrowable($exception, $output);
     }
 }
