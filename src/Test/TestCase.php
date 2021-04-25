@@ -32,13 +32,34 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected $output;
 
     /**
-     * Set up test environment
+     * Set up the test environment
      */
     protected function setUp()
     {
         parent::setUp();
         $this->app = $this->createApplication();
         $this->artisan = $this->createArtisan();
+    }
+
+    /**
+     * Tear down the test environment.
+     */
+    protected function tearDown()
+    {
+        $this->clearTestApplicationInstance();
+        parent::tearDown();
+    }
+
+    /**
+     * Clear test application instance.
+     *
+     * @return $this
+     */
+    protected function clearTestApplicationInstance()
+    {
+        $this->app = null;
+        $this->artisan = null;
+        return $this;
     }
 
     /**
