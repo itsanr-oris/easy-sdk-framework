@@ -89,6 +89,7 @@ class MakeComponentCommand extends GenerateCommand
      * @param $name
      * @return mixed
      * @throws \Foris\Easy\Support\Exceptions\FileNotFountException
+     * @throws \ReflectionException
      */
     public function buildClass($name)
     {
