@@ -48,7 +48,11 @@ class ApplicationTest extends TestCase
      */
     public function testHandleException()
     {
-        $this->command('test:exception');
+        try {
+            $this->command('test:exception');
+        } catch (\Exception $exception) {
+            $this->assertEquals('Test exception', $exception->getMessage());
+        }
 
         $this->assertCount(1, $this->logger()->records);
         $this->assertEquals('error', $this->logger()->records[0]['level']);

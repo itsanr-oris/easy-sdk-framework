@@ -67,6 +67,8 @@ class Application extends ServiceContainer
 
     /**
      * Bootstrap the sdk application.
+     *
+     * @throws \ReflectionException
      */
     protected function bootstrap()
     {
@@ -243,15 +245,20 @@ class Application extends ServiceContainer
      * Register sdk components.
      *
      * @param array $components
+     * @throws \ReflectionException
      */
     public function components($components = [])
     {
         foreach ($components as $component) {
-            if (!class_exists($component) || !is_subclass_of($component, Component::class)) {
+            if (!class_exists($component)
+                || !is_subclass_of($component, Component::class)) {
                 continue;
             }
 
-            call_user_func_array([$component, 'register'], [$this]);
+            $reflect = new ReflectionClass($component);
+            if ($reflect->isInstantiable() && $reflect->hasMethod('register')) {
+                call_user_func_array([$component, 'register'], [$this]);
+            }
         }
     }
 }

@@ -92,11 +92,11 @@ class Application extends \Foris\Easy\Console\Application
             return parent::run($input, $output);
         } catch (\Exception $exception) {
             $this->reportException($exception);
-            $this->handleException($exception, $output);
+            $this->handleException($exception);
             return 1;
         } catch (\Throwable $exception) {
             $this->reportException($exception);
-            $this->handleException($exception, $output);
+            $this->handleException($exception);
             return 1;
         }
     }
@@ -116,23 +116,11 @@ class Application extends \Foris\Easy\Console\Application
     /**
      * Handle a caught exception.
      *
-     * @param \Exception      $exception
-     * @param OutputInterface $output
+     * @param \Exception $exception
      * @throws \Exception
-     * @codeCoverageIgnore
      */
-    public function handleException($exception, $output)
+    public function handleException($exception)
     {
-        if (method_exists($this, 'renderException')) {
-            $this->renderException($exception, $output);
-            return ;
-        }
-
-        if (method_exists($this, 'renderThrowable')) {
-            $this->renderThrowable($exception, $output);
-            return ;
-        }
-
         throw $exception;
     }
 }
