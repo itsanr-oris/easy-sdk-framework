@@ -6,6 +6,7 @@ use Exception;
 use Foris\Easy\Sdk\Application;
 use Foris\Easy\Sdk\Component;
 use Foris\Easy\Support\Filesystem;
+use ReflectionClass;
 
 /**
  * Class ComponentManifest
@@ -96,7 +97,10 @@ class ComponentManifest extends Component
                 continue;
             }
 
-            $this->manifest[] = $class;
+            $reflect = new ReflectionClass($class);
+            if ($reflect->isInstantiable() && $reflect->hasMethod('register')) {
+                $this->manifest[] = $class;
+            }
         }
 
         $this->write($this->manifest);

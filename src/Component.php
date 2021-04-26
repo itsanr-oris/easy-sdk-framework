@@ -2,6 +2,7 @@
 
 namespace Foris\Easy\Sdk;
 
+use Foris\Easy\Sdk\Traits\HasConfig;
 use Foris\Easy\Support\Str;
 
 /**
@@ -9,6 +10,8 @@ use Foris\Easy\Support\Str;
  */
 class Component
 {
+    use HasConfig;
+
     /**
      * Application instance.
      *

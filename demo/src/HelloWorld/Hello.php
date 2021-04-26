@@ -18,4 +18,16 @@ class Hello extends Component
     {
         return 'Hello easy sdk.';
     }
+
+    /**
+     * Gets sdk configuration.
+     *
+     * @param        $key
+     * @param string $default
+     * @return mixed
+     */
+    public function getSdkConfig($key, $default = '')
+    {
+        return $this->getConfig($key, $default);
+    }
 }

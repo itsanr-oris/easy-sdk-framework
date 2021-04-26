@@ -2,8 +2,6 @@
 
 namespace Foris\Easy\Sdk\Tests;
 
-use Foris\Easy\Sdk\Console\Application;
-
 /**
  * Class ApplicationTest
  */
